@@ -1,4 +1,4 @@
-package com.example.quickstart;
+package com.example.quickstart.job;
 
 import org.springframework.stereotype.Service;
 
@@ -13,4 +13,6 @@ public interface JobService {
     Job findById(Long id);
 
     boolean deleteById(Long id);
+
+    Boolean updateJob(Long id, Job job);
 }

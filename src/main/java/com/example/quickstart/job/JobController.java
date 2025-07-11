@@ -1,4 +1,4 @@
-package com.example.quickstart;
+package com.example.quickstart.job;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +42,14 @@ public class JobController {
         return new ResponseEntity<>("Job not found", HttpStatus.NOT_FOUND);
     }
 
+    //@PutMapping("/job/{id}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/job/{id}")
+    public ResponseEntity<String> updateJob(@PathVariable("id") Long id, @RequestBody Job job ){
+        Boolean updated = jobService.updateJob(id, job);
+        if(updated)
+            return new ResponseEntity<>("Job updated successfully", HttpStatus.OK);
+        return new ResponseEntity<>("Job Not Found", HttpStatus.NOT_FOUND);
+    }
 //    @PutMapping("/update")
 //    public Job updateJob(){
 //        Job job = jobs.get(1);

@@ -1,23 +1,47 @@
-package com.example.quickstart;
+package com.example.quickstart.job;
 
-import jakarta.annotation.Generated;
+import com.example.quickstart.company.Company;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
+@Entity
+//@Table(name = "job_table")
 public class Job {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "Title")
     private String title;
+
+    @Column(name = "Description")
     private String description;
+
+    @Column(name = "MinSalary")
     private String minSalary;
+
+    @Column(name = "MaxSalary")
     private String maxSalary;
+
+    @Column(name = "Location")
     private String location;
 
-    public Job(Long id, String title, String description, String minSalary, String maxSalary, String location) {
+    @ManyToOne
+    private Company company;
+
+    public Job(){
+    }
+
+    public Job(Long id, String title, String description, String minSalary, String maxSalary, String location, Company company) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.minSalary = minSalary;
         this.maxSalary = maxSalary;
         this.location = location;
+        this.company = company;
     }
 
     public Long getId() {
@@ -66,5 +90,13 @@ public class Job {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 }
