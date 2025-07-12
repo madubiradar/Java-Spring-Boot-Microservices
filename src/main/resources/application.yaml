@@ -12,5 +12,26 @@ spring:
     show-sql: true
     hibernate.ddl-auto: update
 
+#Actuator
+management:
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
 server:
   port: 8081
+  shutdown: graceful
+
+info:
+  app:
+    name: Job Application Project
+    description: Spring Boot Job Application Project
+    version: 1.0.0
