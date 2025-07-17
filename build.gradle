@@ -24,8 +24,14 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'org.postgresql:postgresql'
 }
 
+bootBuildImage {
+	imageName = "https://hub.docker.com//madubiradar56/first-job-app:latest" // Example
+	// or
+	imageName = "first-job-app:latest" // For local docker
+}
 tasks.named('test') {
 	useJUnitPlatform()
 }
